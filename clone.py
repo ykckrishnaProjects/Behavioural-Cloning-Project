@@ -23,8 +23,8 @@ for line in lines:
 	measurement_right=measurement-correction
 	image_left=cv2.imread('./data/IMG/'+line[1].split('/')[-1])
 	image_right=cv2.imread('./data/IMG/'+line[2].split('/')[-1])
-	images.extend(image,image_left,image_right)
-	measurements.extend(measurement,measurement_left,measurement_right)
+	images.extend((image,image_left,image_right))
+	measurements.extend((measurement,measurement_left,measurement_right))
 	
 
 aug_images=[]
@@ -33,11 +33,15 @@ aug_measurements=[]
 for image,measurement in zip(images,measurements):
 	aug_images.append(image)
 	aug_measurements.append(measurement)
-	aug_images.append(cv2.flip(image,1))
-	aug_measurements.append(measurements*-1.0)
+	image_flipped = np.fliplr(image)
+	measurement_flipped = -measurement
+	aug_images.append(image_flipped)
+	aug_measurements.append(measurement_flipped)
+	#aug_images.append(cv2.flip(image,1))
+	#aug_measurements.append(measurements*(-1))
 	
-X_train = np.array(images)
-Y_train = np.array(measurements)
+X_train = np.array(aug_images)
+Y_train = np.array(aug_measurements)
 
 
 print("Number of training examples =", len(X_train));

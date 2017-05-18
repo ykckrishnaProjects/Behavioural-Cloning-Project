@@ -15,14 +15,17 @@ for line in lines:
 	filename = source_path.split('/')[-1]
 	current_path = './data/IMG/' + filename
 	image = cv2.imread(current_path)
+	image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 	#images.append(image)
 	measurement = float(line[3])
 	#measurements.append(measurement)
 	correction=0.2
 	measurement_left=measurement+correction
 	measurement_right=measurement-correction
-	image_left=cv2.imread('./data/IMG/'+line[1].split('/')[-1])
-	image_right=cv2.imread('./data/IMG/'+line[2].split('/')[-1])
+	image_left =cv2.imread('./data/IMG/'+line[1].split('/')[-1])
+	image_right =cv2.imread('./data/IMG/'+line[2].split('/')[-1])
+	image_left = cv2.cvtColor(image_left, cv2.COLOR_BGR2RGB)
+	image_right = cv2.cvtColor(image_right, cv2.COLOR_BGR2RGB)
 	images.extend((image,image_left,image_right))
 	measurements.extend((measurement,measurement_left,measurement_right))
 	

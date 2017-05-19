@@ -2,12 +2,14 @@ import csv
 import cv2
 import numpy as np
 
+#reading driving_log.csv to get the steering angles corresponding to images
 lines = []
 with open('./data/driving_log.csv') as csvfile:
 	reader = csv.reader(csvfile)
 	for line in reader:
 		lines.append(line)
 
+#reading images (center,left,right)
 images = []
 measurements = []
 for line in lines:
@@ -29,7 +31,7 @@ for line in lines:
 	images.extend((image,image_left,image_right))
 	measurements.extend((measurement,measurement_left,measurement_right))
 	
-
+#augmenting data
 aug_images=[]
 aug_measurements=[]
 
@@ -56,6 +58,7 @@ from keras.layers import Flatten, Dense, Lambda, Cropping2D
 from keras.layers.convolutional import Convolution2D
 from keras.layers.convolutional import MaxPooling2D
 
+#Model Architecture
 model = Sequential()
 model.add(Lambda(lambda x:x/255.0-0.5,input_shape=(160,320,3)))
 model.add(Cropping2D(cropping=((70,25),(0,0))))

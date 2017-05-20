@@ -16,7 +16,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
+[image1]: ./center_2017_05_18_04_59_10_336.jpg "Center Image"
 [image2]: ./examples/placeholder.png "Grayscaling"
 [image3]: ./examples/placeholder_small.png "Recovery Image"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
@@ -69,6 +69,15 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 ####4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. I added a correction of 0.2 to steering angle to the left and right images. I played with several different values for correction, 0.2 turned out to be the best.(lines 24-26) 
+<br>
+#####Center Image
+<img src="./center_2017_05_18_04_59_10_336.jpg" />
+<br>
+#####Left Image
+<img src="./left_2017_05_18_04_59_10_336.jpg" />
+<br>
+#####Right Image
+<img src="./right_2017_05_18_04_59_10_336.jpg" />
 
 For details about how I created the training data, see the next section. 
 
@@ -121,3 +130,14 @@ After the collection process, I had around 40000 number of data points. I then p
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by validation loss.With more than 3 epochs the validation loss increased. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+Below are the images of a successful run on straight road, left and right turns.
+<br>
+#####Straight road
+<img src="./straight.jpg" />
+<br>
+#####Left Turn
+<img src="./left.jpg" />
+<br>
+#####Right Turn
+<img src="./right.jpg" />
